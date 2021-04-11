@@ -1,5 +1,7 @@
 package com.example.library.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -15,33 +17,43 @@ public class Book {
     private String genre;
     private boolean booked; //книга уже у кого-то или в библеотеке / True= у пользователя
 
-    @Transient
+//    @Transient
     @Column(name = "library_id")
-    private long libraryId;
+    private Long libraryId;
 
-    @Transient
+//    @Transient
     @Column(name = "user_id")
-    private long userId;
+    private Long userId;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id" , insertable = false, updatable = false)
      private  User user;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "library_id", insertable = false, updatable = false)
     private Library library;
 
     public Book() {
     }
-//
-//    public long getId() {
-//        return id;
-//    }
-//
-//    public void setId(long id) {
-//        this.id = id;
-//    }
 
+
+    public Long getLibraryId() {
+        return libraryId;
+    }
+
+    public void setLibraryId(Long libraryId) {
+        this.libraryId = libraryId;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 
     public Long getId() {
         return id;
@@ -71,21 +83,7 @@ public class Book {
         this.booked = booked;
     }
 
-    public long getLibraryId() {
-        return libraryId;
-    }
 
-    public void setLibraryId(long libraryId) {
-        this.libraryId = libraryId;
-    }
-
-    public long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
 
     public User getUser() {
         return user;

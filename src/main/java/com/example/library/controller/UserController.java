@@ -1,27 +1,35 @@
 package com.example.library.controller;
 
 import com.example.library.entity.User;
+import com.example.library.repository.UserRepo;
 import com.example.library.service.UserServIn;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-//@RestController
-//@RequestMapping("/users")
+@RestController
+@RequestMapping("/users")
 public class UserController {
 
-//    @Autowired
-//    private UserServIn userServIn;
+    @Autowired
+    private UserRepo userRepo;
 
-//    @RequestMapping(value = "/all", method = RequestMethod.GET)
-//    public List<User> getAllUsers(@RequestParam long id){
-//        return userServIn.getAllUsers();
-//    }
+    @GetMapping("")
+    public List<User> getAllUsers(){
+        return userRepo.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public User getById(@PathVariable Long id){
+        return userRepo.findById(id).get();
+    }
+
+    @PostMapping("")
+    public User createUser(@RequestBody User user){
+        return userRepo.save(user);
+    }
 
 
 

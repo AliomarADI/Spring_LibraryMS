@@ -1,5 +1,7 @@
 package com.example.library.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -13,9 +15,11 @@ public class Library {
     private String name;
     private String address;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "libraries")
     private List<User> users;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "library")
     private List<Book> books;
 

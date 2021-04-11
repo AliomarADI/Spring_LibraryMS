@@ -1,5 +1,7 @@
 package com.example.library.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -15,6 +17,7 @@ public class User {
     @Column(unique = true)
     String ino; // identifier number as ИИН
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
     List<Book> books;
 
@@ -22,6 +25,8 @@ public class User {
     @JoinTable(name = "user_libraries",
     joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
     inverseJoinColumns = {@JoinColumn(name = "library_id", referencedColumnName = "id")})
+
+    @JsonIgnore
     List<Library> libraries;
 
 
