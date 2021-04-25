@@ -37,6 +37,11 @@ public class BookController {
         return bookRepo.getAllByUserId(userId);
     }
 
+    @GetMapping("/library/{id}")
+    public List<Book> getBookOfLibraries(@PathVariable("id") Long libraryId){
+        return bookRepo.getAllByLibraryId(libraryId);
+    }
+
     @PostMapping("")
     public Book createBook(@RequestBody Book book){
         return bookRepo.save(book);

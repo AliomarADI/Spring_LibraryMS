@@ -19,4 +19,6 @@ public interface BookRepo extends JpaRepository<Book,Long> {
     List<Book> getBookByNameContainsOrGenreContains(String name,String genre);
 
     List<Book> getAllByUserId(Long id);
+
+    List<Book> getAllByLibraryId(Long id);
 }

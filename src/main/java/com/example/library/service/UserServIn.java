@@ -13,4 +13,8 @@ public interface UserServIn {
     List<User> getAllUsers();
 
     User findByIno(String ino);
+
+    User create(User user);
+
+    User update(User user);
 }

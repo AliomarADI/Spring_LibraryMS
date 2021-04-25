@@ -1,7 +1,9 @@
 package com.example.library.repository;
 
+import com.example.library.entity.Book;
 import com.example.library.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -19,7 +21,7 @@ public interface UserRepo extends JpaRepository<User,Long> {
 
     User findByIno(String ino);
 
-
+    User findByUsername(String username);
 
 
 }

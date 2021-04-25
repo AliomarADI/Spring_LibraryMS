@@ -24,7 +24,7 @@ public class LibraryController {
         return libraryRepo.findById(id).get();
     }
 
-    @PostMapping("")
+    @PostMapping("/create")
     public Library createLibrary(@RequestBody Library library){
         return libraryRepo.save(library);
     }
