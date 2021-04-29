@@ -16,21 +16,21 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private UserRepo userRepo;
+    private UserServIn userServIn;
 
     @GetMapping("")
     public List<User> getAllUsers(){
-        return userRepo.findAll();
+        return userServIn.getAllUsers();
     }
 
     @GetMapping("/{id}")
     public User getById(@PathVariable Long id){
-        return userRepo.findById(id).get();
+        return userServIn.findById(id);
     }
 
     @PostMapping("/create")
     public User createUser(@RequestBody User user){
-        return userRepo.save(user);
+        return userServIn.create(user);
     }
 
 

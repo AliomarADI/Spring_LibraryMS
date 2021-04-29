@@ -20,9 +20,6 @@ public class UserServImpl implements UserServIn, UserDetailsService {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
-    public UserServImpl() { }
-
-
     @Override
     public List<User> getAllUsers(){
         return userRepo.findAll();

@@ -16,8 +16,38 @@ public class BookServImpl implements BookServIn {
 
 
     @Override
+    public Book create(Book book) {
+        return bookRepo.save(book);
+    }
+
+    @Override
+    public Book update(Book book) {
+        return bookRepo.save(book);
+    }
+
+    @Override
+    public void delete(Long id) {
+        bookRepo.delete(bookRepo.findById(id).get());
+    }
+
+    @Override
+    public List<Book> getAll() {
+        return bookRepo.findAll();
+    }
+
+    @Override
     public List<Book> findAllByNameOrAuthorAnd(String name, String author) {
         return bookRepo.findAllByNameOrAuthor(name,author);
+    }
+
+    @Override
+    public List<Book> findAllByUserId(Long id) {
+        return bookRepo.getAllByUserId(id);
+    }
+
+    @Override
+    public List<Book> findAllByLibrary(Long id) {
+        return bookRepo.getAllByLibraryId(id);
     }
 
     @Override
@@ -26,9 +56,19 @@ public class BookServImpl implements BookServIn {
     }
 
     @Override
-    public Book save(Book book) {
-        return bookRepo.save(book);
+    public Book assignBookToUser(Long bookId, Long userId){
+        Book book= bookRepo.findById(bookId).get();
+        book.setUserId(userId);
+        bookRepo.save(book);
+        return book;
     }
 
+    @Override
+    public Book assignBookToLibrary(Long bookId,Long libraryId){
+        Book book= bookRepo.findById(bookId).get();
+        book.setLibraryId(libraryId);
+        bookRepo.save(book);
+        return book;
+    }
 
 }

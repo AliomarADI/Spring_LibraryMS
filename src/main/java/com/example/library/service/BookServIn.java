@@ -9,10 +9,17 @@ import java.util.List;
 
 public interface BookServIn {
 
+    Book create(Book book);
+    Book update(Book book);
+    void delete(Long id);
+    List<Book> getAll();
     List<Book> findAllByNameOrAuthorAnd(String name, String author);
+    List<Book> findAllByUserId(Long id);
+    List<Book> findAllByLibrary(Long id);
 
     Book findById(long id);
 
-    Book save(Book book);
+    Book assignBookToUser(Long bookId, Long userId);
 
+    Book assignBookToLibrary(Long bookId, Long libraryId);
 }

@@ -15,6 +15,26 @@ public class LibraryServImpl implements LibraryServIn {
     private LibraryRepo libraryRepo;
 
     @Override
+    public Library create(Library library) {
+        return libraryRepo.save(library);
+    }
+
+    @Override
+    public Library update(Library library) {
+        return libraryRepo.save(library);
+    }
+
+    @Override
+    public void delete(Long id) {
+        libraryRepo.delete(libraryRepo.findById(id).get());
+    }
+
+    @Override
+    public List<Library> getAll() {
+        return libraryRepo.findAll();
+    }
+
+    @Override
     public List<Library> findAllByNameOrAddress(String name, String address) {
         return libraryRepo.findAllByNameOrAddress(name, address);
     }
